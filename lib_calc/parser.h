@@ -1,13 +1,19 @@
 #pragma once
-
 #include "types.h"
 
+using namespace std;
 
 class Parsing
 {
-	Stack<std::string> st;
+	string infix;
+	string postfix;
+	string operands = "()+-*/";
+	int priority[6] = { -1,-1,1,1,2,2 };
+	bool isCorrect(string st);
 public:
-	Parsing(std::string _input);
-	static void priority();
-	static void stack();
+	Parsing(string inf = "a + b");
+	string getInfix() { return infix; }
+	string getPostfix() { return postfix; }
+	string toPostfix();
+	double Calculate();
 };
