@@ -11,7 +11,7 @@ class Parsing
 	int priority[6] = { -1,-1,1,1,2,2 };
 	bool isCorrect(string st);
 public:
-	Parsing(string inf = "a + b");
+	Parsing(string inf);
 	string getInfix() { return infix; }
 	string getPostfix() { return postfix; }
 	string toPostfix();

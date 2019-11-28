@@ -36,3 +36,19 @@ bool Parsing::isCorrect(string str)
 		return false;
 	return true;
 }
+
+string Parsing::toPostfix()
+{
+	Stack<char> symbol_stack(MAX_SIZE);
+	int length = infix.length();
+	for (int i = 0; i < length; i++)
+	{
+
+	}
+	return 0;
+}
+
+double Parsing::Calculate()
+{
+	return 0;
+}

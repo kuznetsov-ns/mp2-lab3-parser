@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 
+const int MAX_SIZE = 100;
+
 template <class T>
 class Stack
 {
@@ -45,27 +47,27 @@ template <class T>
 void Stack<T>::push(T elem)
 {
 	if (isFull()) throw ("Full");
-	i++;
-	pMem[i] = elem;
+	Index++;
+	pMem[Index] = elem;
 }
 
 template <class T>
 bool Stack<T>::isFull()
 {
-	return(i >= Size);
+	return(Index == Size - 1);
 }
 
 template <class T>
 bool Stack<T>::isEmpty()
 {
-	return(i == -1);
+	return(Index == -1);
 }
 
 template <class T>
 T Stack<T>::pop()
 {
 	if (isEmpty()) throw "Empty";
-	return pMem[index--];
+	return pMem[Index--];
 }
 
 template <class T>
