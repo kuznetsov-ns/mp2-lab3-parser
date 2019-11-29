@@ -4,8 +4,10 @@ Parsing::Parsing(string inf = "a + b")
 {
 	if (!isCorrect(inf)) throw "Incorrect";
 	for (int i = 0; i < inf.length(); i++)
+	{
 		if (inf[i] != ' ')
 			infix += inf[i];
+	}
 	if (infix.length() < 1) throw "Incorrect";
 }
 
@@ -13,8 +15,6 @@ bool Parsing::isCorrect(string str)
 {
 	string error_symbols = "!@#$%^&№<>{}[]_=,.";
 	int count = 0, variable_count = 0, operations_count = 0, length = str.length();
-	if ((operands.find(str[0] != string::npos)) || (operands.find(str[length - 1]) != string::npos))
-		return false;
 	for (int i = 0; i < length; i++)
 	{
 		if (error_symbols.find(str[i]) != string::npos)
@@ -40,15 +40,51 @@ bool Parsing::isCorrect(string str)
 string Parsing::toPostfix()
 {
 	Stack<char> symbol_stack(MAX_SIZE);
+	string tmp_symbols = "+-*/()";
 	int length = infix.length();
 	for (int i = 0; i < length; i++)
 	{
-
+		if (tmp_symbols.find(infix[i]) == string::npos)
+			postfix += infix[i];
+		if (infix[i] == '(') symbol_stack.push(infix[i]);
+		if (infix[i] == ')')
+		{
+			char tmp = symbol_stack.pop();
+			while (tmp != '(')
+			{
+				postfix += tmp;
+				tmp = symbol_stack.pop();
+			}
+		}
+		if (operands.find(infix[i]) != string::npos)
+		{
+			if (symbol_stack.isEmpty())
+				symbol_stack.push(infix[i]);
+			else
+			{
+				int _index = operands.find(infix[i]);
+				while (!symbol_stack.isEmpty())
+				{
+					char tmp = symbol_stack.pop();
+					if (tmp == '(')
+					{
+						symbol_stack.push(tmp);
+						break;
+					}
+					int __index = operands.find(tmp);
+					if (priority[__index] <= priority[_index])
+						postfix += tmp;
+					else
+					{
+						symbol_stack.push(tmp);
+						break;
+					}
+				}
+				symbol_stack.push(infix[i]);
+			}
+		}
 	}
-	return 0;
-}
-
-double Parsing::Calculate()
-{
-	return 0;
+	while (!symbol_stack.isEmpty())
+		postfix += symbol_stack.pop();
+	return postfix;
 }
