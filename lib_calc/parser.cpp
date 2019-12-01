@@ -1,13 +1,11 @@
 ﻿#include "parser.h"
+#include <vector>
 
 Parsing::Parsing(string inf = "a + b")
 {
 	if (!isCorrect(inf)) throw "Incorrect";
 	for (int i = 0; i < inf.length(); i++)
-	{
-		if (inf[i] != ' ')
-			infix += inf[i];
-	}
+		infix += inf[i];
 	if (infix.length() < 1) throw "Incorrect";
 }
 
@@ -30,10 +28,10 @@ bool Parsing::isCorrect(string str)
 		else
 			operations_count = 0;
 		if ((variable_count > 1) || (operations_count > 1))
-			return false;
+			throw ("too many operators");
 	}
 	if (count != 0)
-		return false;
+		throw ("too many / few brackets");
 	return true;
 }
 
@@ -72,7 +70,7 @@ string Parsing::toPostfix()
 						break;
 					}
 					int __index = operands.find(tmp);
-					if (priority[__index] <= priority[_index])
+					if (priority[__index] >= priority[_index])
 						postfix += tmp;
 					else
 					{

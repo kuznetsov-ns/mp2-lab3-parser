@@ -1,5 +1,6 @@
 #pragma once
 #include "types.h"
+#include <vector>
 
 using namespace std;
 
@@ -15,5 +16,4 @@ public:
 	string getInfix() { return infix; }
 	string getPostfix() { return postfix; }
 	string toPostfix();
-//	double Calculate();
 };
