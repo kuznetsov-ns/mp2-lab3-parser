@@ -16,4 +16,5 @@ public:
 	string getInfix() { return infix; }
 	string getPostfix() { return postfix; }
 	string toPostfix();
+	double Calculate();
 };

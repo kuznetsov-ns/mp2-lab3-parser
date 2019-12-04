@@ -1,5 +1,8 @@
 ﻿#include "parser.h"
+#include <iostream>
 #include <vector>
+
+using namespace std;
 
 Parsing::Parsing(string inf = "a + b")
 {
@@ -44,6 +47,9 @@ string Parsing::toPostfix()
 	{
 		if (tmp_symbols.find(infix[i]) == string::npos)
 			postfix += infix[i];
+		if (operands.find(infix[i + 1]) != string::npos)
+			if (i != length)
+				postfix += ' ';
 		if (infix[i] == '(') symbol_stack.push(infix[i]);
 		if (infix[i] == ')')
 		{
@@ -85,4 +91,74 @@ string Parsing::toPostfix()
 	while (!symbol_stack.isEmpty())
 		postfix += symbol_stack.pop();
 	return postfix;
+}
+
+double Parsing::Calculate()
+{
+	if (infix.length() == 0) toPostfix();
+	int lenght = postfix.length();
+	Stack<double> result(MAX_SIZE);
+	string Values;
+	double* values = new double[lenght];
+	for (int i = 0; i < lenght; i++)
+	{
+		if (operands.find(postfix[i]) == string::npos)
+		{
+			double tmp;
+			if ((postfix[i] < 48) || (postfix[i] > 57))
+			{
+				if (postfix[i] != ' ')
+				{
+					if (Values.find(postfix[i]) == string::npos)
+					{
+						Values += postfix[i];
+						cout << "Enter the value of " << postfix[i] << ": ";
+						cin >> tmp;
+						values[Values.length() - 1] = tmp;
+					}
+					else
+						tmp = values[Values.find(postfix[i])];
+				}
+				else
+					continue;
+			}
+			else
+			{
+				string number;
+				while (postfix[i] != ' ')
+				{	
+					if (operands.find(postfix[i]) != string::npos)
+						break;
+					number += postfix[i];
+					i++;
+				}
+				tmp = stoi(number);
+			}
+			result.push(tmp);
+		}
+		else
+		{
+			double fValue, sValue, tValue;
+			sValue = result.pop();
+			fValue = result.pop();
+			switch (postfix[i])
+			{
+			case '+':
+				tValue = fValue + sValue;
+				break;
+			case '-':
+				tValue = fValue - sValue;
+				break;
+			case '*':
+				tValue = fValue * sValue;
+				break;
+			case '/':
+				tValue = fValue / sValue;
+				break;
+			}
+			result.push(tValue);
+		}
+	}
+	delete[] values;
+	return result.pop();
 }
