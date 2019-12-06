@@ -127,9 +127,9 @@ double Parsing::Calculate()
 				string number;
 				while (postfix[i] != ' ')
 				{	
-					if (operands.find(postfix[i]) != string::npos)
-						break;
 					number += postfix[i];
+					if (operands.find(postfix[i + 1]) != string::npos)
+						break;
 					i++;
 				}
 				tmp = stoi(number);
