@@ -9,6 +9,7 @@ using namespace std;
 int main()
 {
 	string input;
+	double result;
 	cout << "Enter expression: ";
 	cin >> input;
 	cout << endl << input << endl;
@@ -18,6 +19,8 @@ int main()
 		cout << "Infix: " << parser.getInfix() << endl;
 		parser.toPostfix();
 		cout << "Postfix: " << parser.getPostfix() << endl;
+		result = parser.Calculate();
+		cout << "Result: " << result << endl;
 	}
 	catch (const char* s)
 	{
