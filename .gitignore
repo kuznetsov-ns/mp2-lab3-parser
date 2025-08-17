@@ -1,1 +1,19 @@
+# --- build artifacts ---
 *.o
+*.obj
+*.out
+*.exe
+*.a
+*.so
+*.dylib
+
+# --- binaries from our Makefile ---
+app
+app_test
+
+# --- editor / IDE files ---
+.vscode/
+.idea/
+
+# --- system files ---
+.DS_Store
