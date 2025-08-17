@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Parsing::Parsing(string inf = "a + b")
+Parsing::Parsing(string inf)
 {
 	if (!isCorrect(inf)) throw "Incorrect";
 	for (int i = 0; i < inf.length(); i++)

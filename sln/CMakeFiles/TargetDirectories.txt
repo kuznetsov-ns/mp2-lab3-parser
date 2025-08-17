@@ -1,4 +1,0 @@
-C:/Users/kuznetsov.n.s/Desktop/project/sln/CMakeFiles/ALL_BUILD.dir
-C:/Users/kuznetsov.n.s/Desktop/project/sln/CMakeFiles/ZERO_CHECK.dir
-C:/Users/kuznetsov.n.s/Desktop/project/sln/lib_calc/CMakeFiles/lib_calc.dir
-C:/Users/kuznetsov.n.s/Desktop/project/sln/main/CMakeFiles/main.dir
