@@ -7,7 +7,7 @@ using namespace std;
 Parsing::Parsing(string inf)
 {
 	if (!isCorrect(inf)) throw "Incorrect";
-	for (int i = 0; i < inf.length(); i++)
+	for (size_t i = 0; i < inf.length(); i++)
 		infix += inf[i];
 	if (infix.length() < 1) throw "Incorrect";
 }
