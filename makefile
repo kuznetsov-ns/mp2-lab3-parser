@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -I./ -I./lib_calc -I./gtest
+CXXFLAGS = -std=c++17 -Wall -Wextra -I./ -I./lib_calc -I./gtest -Wno-missing-field-initializers -Wno-unused-const-variable
 LDFLAGS = 
 
 # Исходники
