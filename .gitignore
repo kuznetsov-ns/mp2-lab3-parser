@@ -10,6 +10,7 @@
 # --- binaries from our Makefile ---
 app
 app_test
+build/
 
 # --- editor / IDE files ---
 .vscode/
