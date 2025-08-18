@@ -6,8 +6,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
 	string input;
 	double result;
 	cout << "Enter expression: ";
@@ -20,8 +19,7 @@ int main()
 		cout << "Postfix: " << parser.getPostfix() << endl;
 		result = parser.Calculate();
 		cout << "Result: " << result << endl;
-	}
-	catch (const char* s) {
+	} catch (const char* s) {
 		cout << s;
 	}
 	return 0;
